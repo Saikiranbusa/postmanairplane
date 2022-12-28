@@ -1,0 +1,76 @@
+{
+	"info": {
+		"_postman_id": "4215cce1-757b-4f80-809d-9580781ea955",
+		"name": "airline api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "23215351"
+	},
+	"item": [
+		{
+			"name": "get airline",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"const kiran = pm.response.json()\r",
+							"var total = kiran.length;\r",
+							"console.log (total)\r",
+							"for(var i=0;i<total;i++)\r",
+							"{\r",
+							"    var data = kiran[i]\r",
+							"    console.log(data)\r",
+							"    if(kiran[i].country==\"Singapoor\")\r",
+							"    {\r",
+							"        var orderid= kiran[i].id;\r",
+							"        console.log (orderid)\r",
+							"        pm.environment.set(\"oid\"orderid)\r",
+							"    }\r",
+							"}\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://api.instantwebtools.net/v1/airlines"
+			},
+			"response": []
+		},
+		{
+			"name": "create airplane api data",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\r\n        id: 1525,\r\n        \"name\": \"Thai Airways\",\r\n        \"country\": \"Thailand\",\r\n        \"logo\": \"https://upload.wikimedia.org/wikipedia/en/thumb/5/58/Thai_Airways_Logo.svg/200px-Thai_Airways_Logo.svg.png\",\r\n        \"slogan\": \"Smooth as Silk / I Fly THAI\",\r\n        \"head_quaters\": \"Jom Phol Subdistrict, Chatuchak, Bangkok, Thailand\",\r\n        \"website\": \"www.thaiairways.com\",\r\n        \"established\": \"1960\"\r\n    }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://api.instantwebtools.net/v1/airlines  "
+			},
+			"response": []
+		},
+		{
+			"name": "get all airlines",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://api.instantwebtools.net/v1/airlines/2"
+			},
+			"response": []
+		}
+	]
+}
